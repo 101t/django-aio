@@ -37,31 +37,25 @@ class Command(BaseCommand):
 				code="TL",
 				code3="TRY",
 				symbol="₺",
+				order=1,
 			)
 			if created:
-				obj1.enabled = True
-				obj1.order = 1
-				obj1.save()
 				print("Default Currency1 Added")
 			obj2, created = Currency.objects.get_or_create(
 				name="United State Dollar",
 				code="US",
 				code3="USD",
 				symbol="$",
+				order=2,
 			)
 			if created:
-				obj1.enabled = True
-				obj1.order = 2
-				obj1.save()
 				print("Default Currency2 Added")
 			obj3, created = Currency.objects.get_or_create(
 				name="Euro",
 				code="EU",
 				code3="EUR",
 				symbol="€",
+				order=3,
 			)
 			if created:
-				obj1.enabled = True
-				obj1.order = 3
-				obj1.save()
 				print("Default Currency3 Added")
