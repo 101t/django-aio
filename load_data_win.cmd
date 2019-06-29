@@ -6,6 +6,7 @@ del /F db.sqlite3
 %ENVIROO% %MANAGER% reseter
 %ENVIROO% %MANAGER% makemigrations core
 %ENVIROO% %MANAGER% makemigrations users
+%ENVIROO% %MANAGER% makemigrations notify
 %ENVIROO% %MANAGER% makemigrations
 %ENVIROO% %MANAGER% migrate
 
