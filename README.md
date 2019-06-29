@@ -68,7 +68,7 @@ pip install -r requirements.pip
 
 copy Sample.env .env
 
-./load_data_win.sh --reset
+load_data_win.cmd
 ```
 
 ## Conclusion
