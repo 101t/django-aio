@@ -41,9 +41,9 @@ class Migration(migrations.Migration):
                 ('slug', autoslug.fields.AutoSlugField(editable=False, populate_from='title', unique=True)),
                 ('body', models.TextField(verbose_name='Description')),
                 ('file', models.FileField(blank=True, null=True, upload_to=main.notify.models.request._handle_notification_file, verbose_name='File')),
-                ('only_instructor', models.BooleanField(default=False, verbose_name='Only Instructor')),
+                ('staff_only', models.BooleanField(default=False, verbose_name='Only Instructor')),
                 ('requesttype', models.CharField(choices=[('general', 'General'), ('custom', 'Custom')], default='general', max_length=24, verbose_name='Request Type')),
-                ('received_count', models.PositiveIntegerField(default=0, verbose_name='Received user Count')),
+                ('count', models.PositiveIntegerField(default=0, verbose_name='Received user Count')),
             ],
             options={
                 'ordering': ('-created',),

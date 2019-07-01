@@ -19,7 +19,7 @@ logger = get_task_logger(__name__)
 @task(default_retry_delay=DEFAULT_RETRY_DELAY, max_retries=MAX_RETRIES)
 def send_notification(userid, title, body, href):
 	from main.notify.models import Notification
-	from main.core.noify_live import send_to_session
+	from main.notify.livecast import send_to_session
 	try:
 		user = User.objects.get(pk=userid)
 		data = dict(
@@ -45,24 +45,24 @@ send_notification.apply_async(kwargs=dict(userid=1, title="Test", body="descript
 @task(default_retry_delay=DEFAULT_RETRY_DELAY, max_retries=MAX_RETRIES)
 def request_notification_task(request_notification_pk):
 	from main.notify.models import NotificationRequest, Notification
-	from main.core.noify_live import send_to_session
+	from main.notify.livecast import send_to_session
 	try:
 		request_notification = NotificationRequest.objects.get(pk=request_notification_pk)
 	except NotificationRequest.DoesNotExist:
 		LogThat(msg="request_notification_task {}".format(''))
 		return
-	only_instructor = request_notification.only_instructor
+	staff_only = request_notification.staff_only
 	users = User.objects.none()
 	title = request_notification.title or str(_("New Notification"))
 	notifybody = request_notification.body
 	# if request_notification.requesttype == NotificationRequest.GENERAL or request_notification.requesttype == NotificationRequest.CUSTOM:
 	# 	title = str(_("New %(requesttype)s Notification") % dict(requesttype=request_notification.get_requesttype_display()))
-	if only_instructor:
-		users = User.objects.filter(role=User.TUTOR)
+	if staff_only:
+		users = User.objects.filter(is_staff=True, is_active=True)
 	else:
-		users = User.objects.filter(Q(role=User.STUDENT)|Q(role=User.TUTOR))
+		users = User.objects.filter(is_active=True)
 	users = users.distinct()
-	request_notification.received_count = users.count()
+	request_notification.count = users.count()
 	request_notification.save()
 	for user in users:
 		data = dict(

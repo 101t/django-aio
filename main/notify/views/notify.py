@@ -62,7 +62,7 @@ def notify_manage(request):
 		elif s == "decline":
 			callee = User.objects.filter(username=request.POST.get("username")).first()
 			if callee:
-				from main.core.noify_live import send_to_session
+				from main.notify.livecast import send_to_session
 				send_to_session(caller=request.user, callee=callee, cmd='decline',)
 	if isinstance(args, dict):
 		args["status"] = resstatus

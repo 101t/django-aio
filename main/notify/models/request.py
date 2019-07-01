@@ -32,11 +32,11 @@ class NotificationRequest(TimeStampedModel):
 	slug  = AutoSlugField(populate_from='title', unique=True)
 	body  = models.TextField(_("Description"),)
 	file  = models.FileField(upload_to=_handle_notification_file, blank=True, null=True, verbose_name=_("File"))
-	user  = models.ForeignKey(User, verbose_name=_("Publisher"), on_delete=models.CASCADE)
+	user  = models.ForeignKey(User, verbose_name=_("Caller"), on_delete=models.CASCADE)
 	users = models.ManyToManyField(User, blank=True, verbose_name=_("To Users"), related_name='notificationrequest_users')
-	only_instructor = models.BooleanField(default=False, verbose_name=_("Only Instructor"))
+	staff_only = models.BooleanField(default=False, verbose_name=_("User Staff Only"))
 	requesttype     = models.CharField(_("Request Type"), max_length=24, default=GENERAL, choices=TYPES)
-	received_count  = models.PositiveIntegerField(verbose_name=_("Received user Count"), default=0)
+	count  = models.PositiveIntegerField(verbose_name=_("Received user Count"), default=0)
 
 	def __str__(self):
 		return self.title
