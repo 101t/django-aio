@@ -17,8 +17,8 @@ def send_to_broadcast(user, cmd="notify", kwargs={}):
 		type="send.all",
 		text=json.dumps(dict(
 			sender=user.username if user else "system",
-			role=user.role if user else User.TUTOR,
-			status=user.user_status if user else User.ONLINE,
+			role=user.is_staff if user else False,
+			status=user.is_active if user else False,
 			cmd=cmd,
 			**kwargs,
 		))
@@ -31,8 +31,8 @@ def send_to_session(caller, callee, cmd="notify", kwargs={}):
 		type="data_handller",
 		data=json.dumps(dict(
 			sender=caller.username if caller else "system",
-			role=caller.role if caller else User.TUTOR,
-			status=caller.user_status if caller else User.ONLINE,
+			role=caller.is_staff if caller else False,
+			status=caller.is_active if caller else False,
 			cmd=cmd,
 			**kwargs,
 		))
