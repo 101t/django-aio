@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.contrib import messages
 from django.utils import timezone as djtz
 from django.utils.dateformat import DateFormat
 from django.db.models import Q
@@ -74,3 +75,9 @@ def get_query(query_string, search_fields):
     if not terms:
         query = Q(**{"%s__icontains" % search_fields[0]: ""})
     return query
+
+def display_form_validations(form, request, message_type=messages.ERROR):
+    for field_name, errors in form.errors.items():
+        field = form.fields.get(field_name)
+        field_name = field.label if field else field_name
+        messages.add_message(request, message_type, "<b>{}</b>: {}".format(field_name, ", ".join(errors)))
