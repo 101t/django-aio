@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from dateutil.parser import parse
 from .boolean import is_date
+import re
 
 def timestamp2datetime(timestamp):
     return djtz.datetime.fromtimestamp(float(timestamp)/1000.0)
