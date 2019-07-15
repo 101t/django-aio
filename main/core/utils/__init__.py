@@ -7,6 +7,8 @@ from .common import (
 	get_client_ip,
 	str2date,
 	display_form_validations,
+	shortenLargeNumber,
+	password_generator,
 )
 from .cryptograph import enc, dec
 from .tokens import email_active_token, reset_password_token

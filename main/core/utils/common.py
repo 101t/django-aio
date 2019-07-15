@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from dateutil.parser import parse
 from .boolean import is_date
-import re
+import re, string, random
 
 def timestamp2datetime(timestamp):
     return djtz.datetime.fromtimestamp(float(timestamp)/1000.0)
@@ -82,3 +82,24 @@ def display_form_validations(form, request, message_type=messages.ERROR):
         field = form.fields.get(field_name)
         field_name = field.label if field else field_name
         messages.add_message(request, message_type, "<b>{}</b>: {}".format(field_name, ", ".join(errors)))
+
+def shortenLargeNumber(num, digits=1):
+    units = ['k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']
+    for i in range(len(units) - 1, -1, -1):
+        decimal = 1000 ** (i + 1)
+        if abs(num) >= decimal:
+            return "{}{}".format(round(num / decimal, digits), units[i])
+    return str(num)
+
+def password_generator(size=8, chars=string.ascii_letters + string.digits):
+    """
+    Returns a string of random characters, useful in generating temporary
+    passwords for automated password resets.
+
+    size: default=8; override to provide smaller/larger passwords
+    chars: default=A-Za-z0-9; override to provide more/less diversity
+
+    Credit: Ignacio Vasquez-Abrams
+    Source: http://stackoverflow.com/a/2257449
+    """
+    return ''.join(random.choice(chars) for i in range(size))
