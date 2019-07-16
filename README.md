@@ -1,5 +1,4 @@
-# Django AIO
-
+<h1 align="center">Django AIO</h1>
 <p align="center">
 	<img src="https://github.com/101t/django-aio/blob/master/main/static/assets/img/django-aio.png" alt="Django AIO">
 </p>
