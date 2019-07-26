@@ -30,6 +30,8 @@ class Command(BaseCommand):
 				user1.is_active = True
 				user1.is_staff = True
 				user1.is_superuser = True
+				user1.is_email = True
+				user1.is_verified = True
 				user1.save()
 				print("Default User Added")
 			obj1, created = Currency.objects.get_or_create(

@@ -22,5 +22,6 @@ urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path(settings.ADMIN_URL, admin.site.urls),
+    path('account/', include('main.users.urls', namespace="users")),
     path('i18n/', include('django.conf.urls.i18n')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

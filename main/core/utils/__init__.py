@@ -10,6 +10,6 @@ from .common import (
 	shortenLargeNumber,
 	password_generator,
 )
-from .cryptograph import enc, dec
+#from .cryptograph import enc, dec
 from .tokens import email_active_token, reset_password_token
 from .vars import USER_SEARCH_FIELDS

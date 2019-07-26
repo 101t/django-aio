@@ -27,14 +27,15 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
 	class Meta:
 		verbose_name = _("User")
 		verbose_name_plural = _("Users")
-	email 		= models.EmailField(_('email address'), default="", unique=True, blank=True)
+	email 		= models.EmailField(_('Email address'), default="", unique=True, blank=True)
 	pin 		= models.PositiveIntegerField(_("PIN"), default=get_random_pin, validators=[MinLengthValidator(6)],)
-	first_name 	= models.CharField(_('first name'), max_length=30, default="", blank=True)
-	last_name 	= models.CharField(_('last name'), max_length=30, default="", blank=True)
+	first_name 	= models.CharField(_('First name'), max_length=30, default="", blank=True)
+	last_name 	= models.CharField(_('Last name'), max_length=30, default="", blank=True)
 	birthdate 	= models.DateField(verbose_name=_("Birth Date"), null=True)
 	is_staff 	= models.BooleanField(_('Is Staff'), default=False)
 	is_active 	= models.BooleanField(_('Is Active'), default=False)
 	is_verified = models.BooleanField(_('Is Verified'), default=False)
+	is_email    = models.BooleanField(_('Is Email Verified'), default=False)
 	img 		= models.ImageField(verbose_name=_("Avatar"), upload_to=settings.DEFAULT_USER_FOLDER, blank=True, default=settings.DEFAULT_USER_AVATAR)
 
 	address 	= models.TextField(verbose_name=_("Address"), blank=True,)
