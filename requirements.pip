@@ -30,6 +30,7 @@ djangorestframework==3.9.4
 dnspython==1.16.0
 email-validator==1.0.4
 et-xmlfile==1.0.1
+gunicorn==19.9.0
 hiredis==1.0.0
 hyperlink==19.0.0
 idna==2.8
