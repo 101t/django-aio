@@ -1,15 +1,26 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
-from cryptography.fernet import Fernet
 import base64
-from django.conf import settings
+from random import randint
+import hashlib
 
-ENC_KEY = Fernet(settings.SECRET_KEY)
+def md5(data):
+    data_hash = hashlib.md5()
+    data_hash.update(str(data).encode('utf-8'))
+    return str(data_hash.hexdigest())
 
+def sha1(data):
+    data_hash = hashlib.sha1()
+    data_hash.update(str(data).encode('utf-8'))
+    return str(data_hash.hexdigest())
 
-def enc(str):
-    return ENC_KEY.encrypt(str.encode('utf-8'))
+def sha256(data):
+    data_hash = hashlib.sha256()
+    data_hash.update(str(data).encode('utf-8'))
+    return str(data_hash.hexdigest())
 
-def dec(str):
-    return ENC_KEY.decrypt(str)
+def sha512(data):
+    data_hash = hashlib.sha512()
+    data_hash.update(str(data).encode('utf-8'))
+    return str(data_hash.hexdigest())
