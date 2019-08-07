@@ -37,3 +37,10 @@ def send_to_session(caller, callee, cmd="notify", kwargs={}):
 			**kwargs,
 		))
 	))
+'''
+from main.notify.livecast import send_to_session
+from main.users.models import User
+caller = User.objects.get(pk=1)
+callee = User.objects.get(pk=2)
+send_to_session(caller=caller, callee=callee)
+'''
