@@ -8,7 +8,6 @@ from django.db.models import Q
 
 from main.users.models import User
 from main.taskapp.celery import DEFAULT_RETRY_DELAY, MAX_RETRIES, revoke_task
-from main.core.logger import LogThat
 from celery.decorators import task
 from celery.utils.log import get_task_logger
 
@@ -32,7 +31,6 @@ def send_notification(userid, title, body, href):
 		Notification.objects.create(**data)
 		send_to_session(caller=None, callee=user)
 	except User.DoesNotExist:
-		LogThat(msg="send_notification {}".format(''))
 		pass
 '''
 Usage:
@@ -49,7 +47,6 @@ def request_notification_task(request_notification_pk):
 	try:
 		request_notification = NotificationRequest.objects.get(pk=request_notification_pk)
 	except NotificationRequest.DoesNotExist:
-		LogThat(msg="request_notification_task {}".format(''))
 		return
 	staff_only = request_notification.staff_only
 	users = User.objects.none()
