@@ -18,4 +18,4 @@ install:
   - pip install -r requirements.pip
 script:
   - cp -rf Sample.env .env
-  - ./load_data.sh --reset
+  - python manage.py reseter && python manage.py makemigrations && python manage.py migrate && python manage.py load_new
