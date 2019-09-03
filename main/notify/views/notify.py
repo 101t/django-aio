@@ -59,11 +59,6 @@ def notify_manage(request):
 				args["href"] = obj.href
 			resmessage = _("This Notification marked as unread")
 			resstatus = 200
-		elif s == "decline":
-			callee = User.objects.filter(username=request.POST.get("username")).first()
-			if callee:
-				from main.notify.livecast import send_to_session
-				send_to_session(caller=request.user, callee=callee, cmd='decline',)
 	if isinstance(args, dict):
 		args["status"] = resstatus
 		args["message"] = str(resmessage)
