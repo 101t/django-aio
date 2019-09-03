@@ -70,6 +70,39 @@ copy Sample.env .env
 load_data_win.cmd
 ```
 
+## Development
+
+### Prepare Translations
+
+Adding translation made easy by this commands
+
+```sh
+cd django-aio/main/
+
+django-admin makemessages -l en
+
+django-admin compilemessages
+```
+	Note: make sure you have `gettext` installed in your `Unix` Environment
+
+	```sh
+	# using gettext in ubuntu or macOS
+	msgunfmt [django.mo] > [django.po]
+	```
+
+### Run Celery
+
+To run your celery in development
+```sh
+celery worker -A main.taskapp -l debug
+```
+
+### Run Channels
+To run channels in development as `ASGI` using `daphne`
+```sh
+daphne config.asgi:application -b 0.0.0.0 -p 9000
+```
+
 ## Conclusion
 
 The `django-aio` repository is a great experience with developing a bigger application in a team of people. We enjoyed the time spent on the project, the quick-starting the implementation with all the nice features we thought of. Our implementation meets our predefined goals and is ready to be deployed quickly with as base templates.
