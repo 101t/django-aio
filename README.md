@@ -83,12 +83,12 @@ django-admin makemessages -l en
 
 django-admin compilemessages
 ```
-	Note: make sure you have `gettext` installed in your `Unix` Environment
+> Note: make sure you have `gettext` installed in your `Unix` Environment
 
-	```sh
-	# using gettext in ubuntu or macOS
-	msgunfmt [django.mo] > [django.po]
-	```
+```sh
+# using gettext in ubuntu or macOS
+msgunfmt [django.mo] > [django.po]
+```
 
 ### Run Celery
 
