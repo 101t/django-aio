@@ -15,7 +15,7 @@ language: python
 python:
   - "3.5"
 install:
-  - pip install -r requirements.pip
+  - pip install -r requirements.txt
 script:
   - cp -rf Sample.env .env
   - python manage.py reseter && python manage.py makemigrations && python manage.py migrate && python manage.py load_new
