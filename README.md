@@ -4,6 +4,7 @@
 </p>
 <p>
 	<img src="https://travis-ci.org/101t/django-aio.svg?branch=master" alt="travis-ci">
+	<img src="https://coveralls.io/repos/github/101t/django-aio/badge.svg?branch=master(Coverage Status)!:https://coveralls.io/github/101t/django-aio?branch=master" alt="coveralls">
 </p>
 
 ## Features I thought About
