@@ -26,7 +26,7 @@ class Command(BaseCommand):
 				user1.first_name = "Chris"
 				user1.last_name = "Daughtry"
 				user1.email = "admin@example.com"
-				user1.set_password("1")
+				user1.set_password("secret")
 				user1.is_active = True
 				user1.is_staff = True
 				user1.is_superuser = True

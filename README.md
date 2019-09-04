@@ -72,6 +72,7 @@ copy Sample.env .env
 
 load_data_win.cmd
 ```
+> Note: the `admin` user automatically added to project as default administrator user, the credentials authentication is **Username: `admin`, Password: `secret`**.
 
 ## Development
 
@@ -104,6 +105,12 @@ celery worker -A main.taskapp -l debug
 To run channels in development as `ASGI` using `daphne`
 ```sh
 daphne config.asgi:application -b 0.0.0.0 -p 9000
+```
+
+### Run Django
+To run django in development as `HTTP` 
+```sh
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ## Conclusion
