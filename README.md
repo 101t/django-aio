@@ -3,8 +3,8 @@
 	<img src="https://github.com/101t/django-aio/blob/master/main/static/assets/img/django-aio.png" alt="Django AIO">
 </p>
 <p>
-	<img src="https://travis-ci.org/101t/django-aio.svg?branch=master" alt="travis-ci">
-	<img src="https://coveralls.io/repos/github/101t/django-aio/badge.svg?branch=master(Coverage Status)!:https://coveralls.io/github/101t/django-aio?branch=master" alt="coveralls">
+	<a href="https://travis-ci.org/101t/django-aio"><img src="https://travis-ci.org/101t/django-aio.svg?branch=master" alt="travis-ci"></a>
+	<a href='https://coveralls.io/github/101t/django-aio'><img src='https://coveralls.io/repos/github/101t/django-aio/badge.svg' alt='Coverage Status' /></a>
 </p>
 
 ## Features I thought About
