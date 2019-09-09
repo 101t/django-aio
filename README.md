@@ -73,6 +73,13 @@ copy Sample.env .env
 
 load_data_win.cmd
 ```
+
+Or using as new project templates
+
+```python
+django-admin.py startproject --template=https://github.com/101t/django-aio/archive/latest.zip --extension=py,gitignore PROJECT_NAME
+```
+
 > Note: the `admin` user automatically added to project as default administrator user, the credentials authentication is **Username: `admin`, Password: `secret`**.
 
 ## Development
