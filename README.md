@@ -76,7 +76,7 @@ load_data_win.cmd
 
 Or using as new project templates
 
-```python
+```sh
 django-admin.py startproject --template=https://github.com/101t/django-aio/archive/latest.zip --extension=py,gitignore PROJECT_NAME
 ```
 
