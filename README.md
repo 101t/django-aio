@@ -121,6 +121,17 @@ To run django in development as `HTTP`
 python manage.py runserver 0.0.0.0:8000
 ```
 
+### Upgrading Packages
+
+Here the following examples how to upgrade some packages
+
+```sh
+pip install -U Django
+pip install -U Channels
+pip install -U Celery
+```
+> Note: be careful about sub-packages compatibility and dependencies conflict while **upgrading**
+
 ## Conclusion
 
-The `django-aio` repository is a great experience with developing a bigger application in a team of people. We enjoyed the time spent on the project, the quick-starting the implementation with all the nice features we thought of. Our implementation meets our predefined goals and is ready to be deployed quickly with as base templates.
+The `django-aio` repository is a great experience with developing a bigger application in a team of people. The quick-starting the implementation with all the nice features we thought of. Our implementation meets our predefined goals and is ready to be used quickly as base templates.
