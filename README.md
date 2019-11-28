@@ -126,9 +126,9 @@ python manage.py runserver 0.0.0.0:8000
 Here the following examples how to upgrade some packages
 
 ```sh
-pip install -U Django
-pip install -U Channels
-pip install -U Celery
+pip install -U django
+pip install -U channels
+pip install -U celery
 ```
 > Note: be careful about sub-packages compatibility and dependencies conflict while **upgrading**
 

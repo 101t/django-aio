@@ -1,6 +1,7 @@
 aioredis==1.2.0
 amqp==2.5.0
-asgiref==3.2.3
+asgi-redis==1.4.3
+asgiref==2.3.2
 asn1crypto==0.24.0
 astroid==2.3.1
 async-timeout==2.0.1
@@ -41,6 +42,7 @@ kombu==4.6.3
 lazy-object-proxy==1.4.2
 mccabe==0.6.1
 msgpack==0.5.6
+msgpack-python==0.5.6
 oauthlib==3.0.1
 odfpy==1.4.0
 openpyxl==2.6.2
@@ -58,7 +60,7 @@ python-dateutil==2.8.0
 pytz==2019.1
 PyYAML==5.1.1
 qrcode==6.1
-redis==3.2.1
+redis==2.10.6
 requests==2.22.0
 requests-oauthlib==1.2.0
 six==1.12.0
