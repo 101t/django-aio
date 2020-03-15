@@ -18,8 +18,6 @@ DEBUG = env.bool("DEBUG", False)
 SITE_ID = int(env("SITE_ID", default='1'))
 
 INSTALLED_APPS = [
-    'jet.dashboard',
-    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
