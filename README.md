@@ -18,6 +18,7 @@ All in one pre-configured and prepared as django project, your project will be r
 3. Channels
 4. Postgres
 5. Redis
+6. DRF (Django REST Framework)
 
 Also has some features customization:
 
@@ -39,7 +40,7 @@ In your terminal for **Unix** (Linux/Mac)
 ```sh
 pip install virtualenv
 
-git clone https://github.com/101t/django-aio
+git clone https://github.com/101t/django-aio --depth 1
 
 cd django-aio/
 
@@ -47,11 +48,11 @@ virtualenv -p python3 env
 
 source env/bin/activate
 
-pip install -r requirements.pip
+pip install -r requirements.txt
 
 cp -rf Sample.env .env
 
-./load_data.sh --reset
+./load_data.sh --init
 ```
 
 In Command Prompt for **Windows**
@@ -59,7 +60,7 @@ In Command Prompt for **Windows**
 ```sh
 python -m pip install virtualenv
 
-git clone https://github.com/101t/django-aio
+git clone https://github.com/101t/django-aio --depth 1
 
 cd django-aio/
 
@@ -67,11 +68,11 @@ virtualenv env
 
 env/Scripts/activate
 
-pip install -r requirements.pip
+pip install -r requirements.txt
 
 copy Sample.env .env
 
-load_data_win.cmd
+load_data_win.bat --init
 ```
 
 Or using as new project templates
@@ -129,9 +130,10 @@ Here the following examples how to upgrade some packages
 pip install -U django
 pip install -U channels
 pip install -U celery
+pip install -U djangorestframework markdown django-filter
 ```
 > Note: be careful about sub-packages compatibility and dependencies conflict while **upgrading**
 
 ## Conclusion
 
-The `django-aio` repository is a great experience with developing a bigger application in a team of people. The quick-starting the implementation with all the nice features we thought of. Our implementation meets our predefined goals and is ready to be used quickly as base templates.
+The `django-aio` [Django All-in-One] repository is the result of team collaboration with developing a big web application. It's designed to make quick-starting for the pre-defined installed packages with all nice features to make sure the implementation initialized, these efforts represent predefined goals and base templates for django frameworks and its beautiful 3rd-party packages.
