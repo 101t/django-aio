@@ -1,0 +1,1 @@
+from .home import welcome_view, global_manage

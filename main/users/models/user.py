@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.validators import ASCIIUsernameValidator, UnicodeUsernameValidator
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator, MinLengthValidator
-from django.utils import six, timezone
+from django.utils import timezone
 from django.utils.text import slugify
 from django.db import models
 from django.db.models import Count, Q
@@ -17,7 +17,7 @@ from main.users.manager import UserManager
 
 import pytz, os, random
 
-username_validator = UnicodeUsernameValidator() if six.PY3 else ASCIIUsernameValidator()
+username_validator = ASCIIUsernameValidator()
 _PHONE_REGEX   = RegexValidator(regex=r'(\d{9,15})$', message=_("Your phone number should consist of 9-15 digits. Example: 1114442277"))
 
 def get_random_pin():
@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
 	tel 		= models.CharField(verbose_name=_("Telephone"), max_length=15, blank=True, validators=[_PHONE_REGEX])
 	fax 		= models.CharField(verbose_name=_("Fax"), max_length=15, blank=True, validators=[_PHONE_REGEX])
 
-	username_validator = UnicodeUsernameValidator() if six.PY3 else ASCIIUsernameValidator()
+	username_validator = ASCIIUsernameValidator()
 	username 	= models.CharField(_('Username'), max_length=150, unique=True,
 		help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
 		validators=[username_validator],
