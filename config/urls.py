@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 urlpatterns = [
+    path('jet/', include('jet.urls', namespace="jet")),
+    path('jet/dashboard/', include('jet.dashboard.urls', namespace="jet-dashboard")),
     path(settings.ADMIN_URL, admin.site.urls),
     path('account/', include('main.users.urls', namespace="users")),
     path('i18n/', include('django.conf.urls.i18n')),
