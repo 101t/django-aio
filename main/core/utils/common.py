@@ -44,6 +44,15 @@ def paginate(objects, per_page=24, page=1):
         paginated_objects = paginator.page(paginator.num_pages)
     return paginated_objects
 
+# def remove_xss_from_html(html):
+#     " prevent Cross-site scripting attack "
+#     from lxml.html.clean import clean_html
+#     return clean_html(html) if isinstance(html, str) and html else ""
+
+
+def remove_html_tags(html):
+    return re.sub(re.compile('<.*?>'), '', html) if isinstance(html, str) and html else ""
+
 def normalize_query(query_string, findterms=re.compile(r'"([^"]+)"|(\S+)').findall, normspace=re.compile(r'\s{2,}').sub):
     ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
         and grouping quoted words together.
@@ -103,3 +112,8 @@ def password_generator(size=8, chars=string.ascii_letters + string.digits):
     Source: http://stackoverflow.com/a/2257449
     """
     return ''.join(random.choice(chars) for i in range(size))
+
+def get_channel_group_name(user=None):
+    if user:
+        return password_generator(size=10)
+    return False
