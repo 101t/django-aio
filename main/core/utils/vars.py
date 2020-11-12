@@ -1,2 +1,4 @@
+get_user_search_fields = lambda field_name="user": (f"{field_name}__first_name", f"{field_name}__last_name",
+                                                    f"{field_name}__email", f"{field_name}__username",)
 
-USER_SEARCH_FIELDS = ("user__first_name", "user__last_name", "user__email", "user__username",)
+USER_SEARCH_FIELDS = get_user_search_fields(field_name="user")
