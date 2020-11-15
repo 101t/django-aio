@@ -1,2 +1,2 @@
-from .notification import *
-from .request import *
+from . import notification
+from . import request

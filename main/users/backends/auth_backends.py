@@ -41,5 +41,5 @@ class UserModelBackend(ModelBackend):
                 raise ImproperlyConfigured('Could not get auth user model')
         return self._user_class
     def user_can_authenticate(self, user):
-        # TODO: ensure everthing is OK with before login
+        # TODO: ensure everything is OK with before login
         return True

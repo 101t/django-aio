@@ -1,6 +1,7 @@
 """Django 2.2.2"""
 from __future__ import absolute_import, unicode_literals
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse_lazy
 import os, environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
@@ -87,7 +88,7 @@ AUTHENTICATION_BACKENDS = (
     'main.users.backends.UserModelBackend',
 )
 
-LOGIN_URL = "/user/login/"
+LOGIN_URL = reverse_lazy("users:signin_view")
 
 ADMIN_URL = env('ADMIN_URL', default="admin/")
 
@@ -98,6 +99,7 @@ LANGUAGE_CODE = env('LANGUAGE_CODE', default="en")
 LANGUAGES = (
     ('en', _('English')),
     ('tr', _('Türkçe')),
+    ('ar', _('العربية')),
 )
 
 TIME_ZONE = 'UTC'
@@ -111,6 +113,9 @@ USE_TZ = True
 SITE_TITLE  = "DjangoAIO site admin"
 SITE_HEADER = "DjangoAIO administration"
 INDEX_TITLE = "Dashboard administration"
+
+SITE_NAME   = env("SITE_NAME", default="DjangoAIO")
+BASE_URL    = env("BASE_URL", default="http://localhost:8000")
 
 from django.contrib.messages import constants as message_constants
 MESSAGE_TAGS = {

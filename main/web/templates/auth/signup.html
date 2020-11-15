@@ -3,5 +3,10 @@
 {% block title %}{% trans "Sign Up" %}{% endblock title %}
 {% block extracss %}{% endblock extracss %}
 {% block content %}
+{% include "includes/messages.html" %}
+<h3>{% trans 'Create an account' %}</h3>
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+</form>
 {% endblock content %}
 {% block extrajs %}{% endblock extrajs %}

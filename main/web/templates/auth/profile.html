@@ -3,5 +3,10 @@
 {% block title %}{% trans "Profile" %}{% endblock title %}
 {% block extracss %}{% endblock extracss %}
 {% block content %}
+{% include "includes/messages.html" %}
+<h3>{% trans 'Profile' %}</h3>
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+</form>
 {% endblock content %}
 {% block extrajs %}{% endblock extrajs %}
