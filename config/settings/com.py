@@ -1,4 +1,4 @@
-"""Django 2.2.2"""
+"""Django AIO"""
 from __future__ import absolute_import, unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
@@ -19,8 +19,8 @@ DEBUG = env.bool("DEBUG", False)
 SITE_ID = int(env("SITE_ID", default='1'))
 
 INSTALLED_APPS = [
-    'jet.dashboard',
-    'jet',
+    'main.jet.dashboard',
+    'main.jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +53,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(APPS_DIR.path('templates')),],
+        'DIRS': [str(APPS_DIR.path('templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,10 +72,10 @@ TEMPLATES = [
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -110,14 +110,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-SITE_TITLE  = "DjangoAIO site admin"
+SITE_TITLE = "DjangoAIO site admin"
 SITE_HEADER = "DjangoAIO administration"
 INDEX_TITLE = "Dashboard administration"
 
-SITE_NAME   = env("SITE_NAME", default="DjangoAIO")
-BASE_URL    = env("BASE_URL", default="http://localhost:8000")
+SITE_NAME = env("SITE_NAME", default="DjangoAIO")
+BASE_URL = env("BASE_URL", default="http://localhost:8000")
 
 from django.contrib.messages import constants as message_constants
+
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'info',
     message_constants.INFO: 'info',
@@ -141,16 +142,18 @@ MEDIA_ROOT = str(ROOT_DIR('public/media'))
 
 MEDIA_URL = '/media/'
 
-REDIS_URL = ('localhost', 6379) #env.str('REDIS_URL', default=('localhost', 6379))
+REDIS_URL = ('localhost', 6379)  # env.str('REDIS_URL', default=('localhost', 6379))
 ASGI_APPLICATION = "config.routing.application"
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [REDIS_URL,],
+            "hosts": [REDIS_URL, ],
         },
     },
 }
 
 DEFAULT_USER_AVATAR = STATIC_URL + "assets/img/user.png"
 DEFAULT_USER_FOLDER = "users"
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'  # Django-JET admin popup required

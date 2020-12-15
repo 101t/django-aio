@@ -1,6 +1,6 @@
 <h1 align="center">Django AIO</h1>
 <p align="center">
-	<img src="https://github.com/101t/django-aio/blob/master/main/static/assets/img/django-aio.png" alt="Django AIO">
+	<img src="main/static/assets/img/django-aio.png" alt="Django AIO">
 </p>
 <p>
 	<a href="https://travis-ci.org/101t/django-aio"><img src="https://travis-ci.org/101t/django-aio.svg?branch=master" alt="travis-ci"></a>

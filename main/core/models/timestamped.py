@@ -12,6 +12,15 @@ class TimeStampedModel(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
 
+	ORDER_BY = (
+		("created", _("Created Ascendant"),),
+		("-created", _("Created Descendant"),),
+		("modified", _("Modified Ascendant"),),
+		("-modified", _("Modified Descendant"),),
+	)
+	ORDER_BY_MODIFIED_DEFAULT = "-modified"
+	ORDER_BY_CREATED_DEFAULT = "-created"
+
 	class Meta:
 		abstract = True
 	def get_dict(self):
