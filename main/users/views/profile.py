@@ -7,6 +7,7 @@ from django.contrib import messages
 from main.core.utils import display_form_validations
 from main.users.forms import ProfileForm
 
+
 @login_required
 def profile_view(request):
     form = ProfileForm(instance=request.user)

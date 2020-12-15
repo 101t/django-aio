@@ -3,6 +3,7 @@ import glob, os
 from django.core.management import BaseCommand
 from django.db import connection
 
+
 class Command(BaseCommand):
     help = "Removes all migrations"
     app_directory = "main"
@@ -10,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             for filename in glob.iglob("{0}/**/migrations/*.py".format(self.app_directory) if os.name == 'nt' else \
-                                       "{0}\\**\\migrations\\*.py".format(self.app_directory)):
+                                               "{0}\\**\\migrations\\*.py".format(self.app_directory)):
                 if all((filename.split("/")[-1] != "__init__.py", filename.split("\\")[-1] != "__init__.py",)):
                     os.remove(filename)
             print("Migration files removed.")

@@ -2,7 +2,8 @@
 from __future__ import absolute_import, unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
-import os, environ
+import os
+import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
 APPS_DIR = ROOT_DIR.path('main')

@@ -1,13 +1,7 @@
-# -*- encoding: utf-8 -*-
-from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from autoslug import AutoSlugField
-from .timestamped import TimeStampedModel
-import decimal
 
 
 class Currency(models.Model):

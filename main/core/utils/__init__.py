@@ -4,7 +4,7 @@ from .common import (
     remove_html_tags,
     get_query,
     timestamp2datetime,
-    readabledateformat,
+    readable_date_format,
     str2date,
     display_form_validations,
     shortenLargeNumber,

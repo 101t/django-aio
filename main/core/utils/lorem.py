@@ -14,7 +14,8 @@ WORDS = ("adipisci aliquam amet consectetur dolor dolore dolorem eius est et"
          "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat"
          "non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.").split()
 
-class TextLorem():
+
+class TextLorem(object):
     def __init__(self, wsep=' ', ssep=' ', psep='\n\n',
                  srange=(4, 8), prange=(5, 10), trange=(3, 6),
                  words=None):
@@ -47,6 +48,7 @@ class TextLorem():
     def _word(self):
         return random.choice(self._words)
 
+
 def sentence(*args, **kwargs):
     return TextLorem().sentence(*args, **kwargs)
 
@@ -57,6 +59,7 @@ def paragraph(*args, **kwargs):
 
 def text(*args, **kwargs):
     return TextLorem().text(*args, **kwargs)
+
 
 def random_date(start=(timezone.now() - timezone.timedelta(days=10000)), end=timezone.now()):
     """

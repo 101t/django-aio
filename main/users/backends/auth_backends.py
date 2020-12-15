@@ -3,6 +3,7 @@ from django.contrib.auth.backends import ModelBackend
 from django.core.exceptions import ImproperlyConfigured
 from django.apps import apps
 
+
 class UserModelBackend(ModelBackend):
     def authenticate(self, request, email=None, username=None, password=None, **kwargs):
         from ..models import User as UserModel
@@ -40,6 +41,7 @@ class UserModelBackend(ModelBackend):
             if not self._user_class:
                 raise ImproperlyConfigured('Could not get auth user model')
         return self._user_class
+
     def user_can_authenticate(self, user):
         # TODO: ensure everything is OK with before login
         return True
