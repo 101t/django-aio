@@ -1,6 +1,7 @@
 from dateutil.parser import parse
 from decimal import Decimal
 import json
+import uuid
 
 
 def is_json(string):
@@ -40,4 +41,11 @@ def is_date(string):
         parse(string)
         return True
     except:
+        return False
+
+def is_uuid(string, version=4):
+    try:
+        uuid.UUID(string, version=version)
+        return True
+    except ValueError:
         return False
