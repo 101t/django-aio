@@ -1,4 +1,4 @@
-from .boolean import is_date, is_decimal, is_float, is_int, is_json
+from .boolean import is_date, is_decimal, is_float, is_int, is_json, is_uuid
 from .common import (
     get_client_ip,
     remove_html_tags,
