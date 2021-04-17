@@ -1,6 +1,5 @@
 aioredis==1.2.0
 amqp==2.5.0
-asgi-redis==1.4.3
 asgiref==3.3.4
 asn1crypto==0.24.0
 astroid==2.3.1
@@ -20,7 +19,7 @@ chardet==3.0.4
 coinaddr==1.0.1
 colorama==0.4.4
 constantly==15.1.0
-cryptography==3.2.1
+cryptography>=3.3.2
 daphne==3.0.2
 defusedxml==0.6.0
 Django==3.0.14
@@ -28,7 +27,7 @@ django-3-jet==1.0.8
 django-autoslug==1.9.4
 django-crequest==2018.5.11
 django-environ==0.4.5
-djangorestframework==3.11.0
+djangorestframework>=3.11.2
 dnspython==1.16.0
 email-validator==1.0.4
 et-xmlfile==1.0.1
