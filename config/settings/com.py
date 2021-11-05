@@ -149,3 +149,5 @@ CHANNEL_LAYERS = {
 
 DEFAULT_USER_AVATAR = STATIC_URL + "assets/img/user.png"
 DEFAULT_USER_FOLDER = "users"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
