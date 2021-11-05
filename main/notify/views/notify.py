@@ -1,4 +1,6 @@
-from django.utils.translation import ugettext_lazy as _
+# -*- encoding: utf-8 -*-
+from __future__ import unicode_literals
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required

@@ -1,4 +1,6 @@
-from django.utils.translation import ugettext as _
+# -*- encoding: utf-8 -*-
+from __future__ import unicode_literals, absolute_import
+from django.utils.translation import gettext as _
 from django import forms
 
 from main.users.models import User

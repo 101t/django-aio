@@ -157,4 +157,4 @@ CHANNEL_LAYERS = {
 DEFAULT_USER_AVATAR = STATIC_URL + "assets/img/user.png"
 DEFAULT_USER_FOLDER = "users"
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'  # Django-JET admin popup required
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

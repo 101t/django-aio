@@ -1,4 +1,10 @@
-from django.utils.translation import ugettext_lazy as _
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+from django.utils.timezone import now
+from django.utils import timezone
+from django.db.models import Q
 
 from main.users.models import User
 from main.taskapp.celery import DEFAULT_RETRY_DELAY, MAX_RETRIES

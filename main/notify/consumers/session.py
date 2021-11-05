@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+from __future__ import unicode_literals
+from django.utils.translation import gettext_lazy as _
+from django.conf import settings
+
+import asyncio
+from asgiref.sync import async_to_sync
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 

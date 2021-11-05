@@ -1,8 +1,12 @@
-from django.utils.translation import ugettext_lazy as _
-from django.shortcuts import render, HttpResponse
-
-import json
-
+# -*- encoding: utf-8 -*-
+from __future__ import unicode_literals
+from django.utils.translation import gettext_lazy as _
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.utils import timezone as djtz
+from django.conf import settings
 
 def welcome_view(request):
     import django, sys

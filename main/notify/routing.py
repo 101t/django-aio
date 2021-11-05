@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.urls import path
+from django.utils.translation import gettext_lazy as _
+from django.conf import settings
+from django.urls import include, path
 
 from main.notify.consumers import *
 
