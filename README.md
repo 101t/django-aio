@@ -38,7 +38,7 @@ Also has some features' customization:
 
 In your terminal for **Unix** (Linux/Mac)
 
-```sh
+```shell
 pip install virtualenv
 
 git clone https://github.com/101t/django-aio --depth 1
@@ -53,12 +53,16 @@ pip install -r requirements.txt
 
 cp sample.env .env
 
+python manage.py migrate
+
+python manage.py load_new
+
 python manage.py runserver
 ```
 
 In Command Prompt for **Windows**
 
-```sh
+```shell
 python -m pip install virtualenv
 
 git clone https://github.com/101t/django-aio --depth 1
@@ -73,12 +77,16 @@ pip install -r requirements.txt
 
 copy sample.env .env
 
+python manage.py migrate
+
+python manage.py load_new
+
 python manage.py runserver
 ```
 
 Or using as new project templates
 
-```sh
+```shell
 django-admin.py startproject --template=https://github.com/101t/django-aio/archive/latest.zip --extension=py,gitignore YOUR_PROJECT_NAME
 ```
 
@@ -90,7 +98,7 @@ django-admin.py startproject --template=https://github.com/101t/django-aio/archi
 
 Adding translation made easy by this commands
 
-```sh
+```shell
 cd django-aio/main/
 
 django-admin makemessages -l en
@@ -99,7 +107,7 @@ django-admin compilemessages
 ```
 > Note: make sure you have `gettext` installed in your `Unix` Environment
 
-```sh
+```shell
 # using gettext in ubuntu or macOS
 msgunfmt [django.mo] > [django.po]
 ```
@@ -107,13 +115,13 @@ msgunfmt [django.mo] > [django.po]
 ### Run Celery
 
 To run your celery in development
-```sh
+```shell
 make run_celery
 ```
 
 ### Run Django
 To run django in development as `HTTP` 
-```sh
+```shell
 make run
 ```
 
