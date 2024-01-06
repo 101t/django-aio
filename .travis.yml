@@ -13,9 +13,15 @@ cache:
 language: python
 
 python:
-  - "3.6"
+  - "3.8"
+  - "3.9"
+  - "3.10"
+  - "3.11"
+  - "3.12"
 install:
   - pip install -r requirements.txt
 script:
-  - cp -rf sample.env .env
-  - python manage.py reseter && python manage.py makemigrations && python manage.py migrate && python manage.py load_new
+  - cp sample.env .env
+  - python manage.py migrate
+  - python manage.py load_new
+  - python manage.py runserver 0.0.0.0:8000

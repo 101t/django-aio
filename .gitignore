@@ -58,16 +58,11 @@ staticfiles
 # virtual environments
 .env
 env/
+venv/
 db.sqlite3
-
-# User-uploaded media
-lms/media/
 
 # Hitch directory
 tests/.hitch
-
-# Docker Compose
-/docker-compose.yml
 
 #sunucudaki static ve medya ve dosyalarının konumu
 /public/*
@@ -81,3 +76,4 @@ celerybeat.pid
 # IDE Settings
 .vscode/
 .idea/
+cache/
