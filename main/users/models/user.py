@@ -37,8 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
     is_verified = models.BooleanField(_('Is Verified'), default=False)
     is_email = models.BooleanField(_('Is Email Verified'), default=False,
                                    help_text=_("Email verification is important to keep email address verified"))
-    img = models.ImageField(verbose_name=_("Avatar"), upload_to=settings.DEFAULT_USER_FOLDER, blank=True,
-                            default=settings.DEFAULT_USER_AVATAR)
+    img = models.ImageField(verbose_name=_("Avatar"), upload_to=settings.DEFAULT_USER_FOLDER, blank=True, null=True)
 
     address = models.TextField(verbose_name=_("Address"), blank=True, )
     mobile = models.CharField(verbose_name=_("Mobile"), max_length=15, blank=True, validators=[_PHONE_REGEX])

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
-from django.utils.translation import gettext_lazy as _
-from django.utils.text import slugify
+
+import os
+
+from autoslug import AutoSlugField
+from crequest.middleware import CrequestMiddleware
 from django.db import models
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 from main.core.models import TimeStampedModel
 from main.users.models import User
-
-from crequest.middleware import CrequestMiddleware
-from autoslug import AutoSlugField
-import os
 
 
 def _handle_notification_file(instance, filename):
@@ -38,7 +38,7 @@ class NotificationRequest(TimeStampedModel):
     users = models.ManyToManyField(User, blank=True, verbose_name=_("To Users"),
                                    related_name='notificationrequest_users')
     staff_only = models.BooleanField(default=False, verbose_name=_("User Staff Only"))
-    requesttype = models.CharField(_("Request Type"), max_length=24, default=GENERAL, choices=TYPES)
+    request_type = models.CharField(_("Request Type"), max_length=24, default=GENERAL, choices=TYPES)
     count = models.PositiveIntegerField(verbose_name=_("Received user Count"), default=0)
 
     def __str__(self):
@@ -63,11 +63,11 @@ class NotificationRequest(TimeStampedModel):
             "body": self.body,
             "file": {"url": self.file.url, "name": self.file.name} if self.file else {"url": "", "name": ""},
             "user": self.user.pk if self.user else -1,
-            "requesttype": self.get_requesttype_display(),
-            "requesttype0": self.requesttype,
+            "request_type": self.get_request_type_display(),
+            "request_type0": self.request_type,
         }
         basedic.update(dic)
         return basedic
 
     def get_absolute_url(self):
-        return reverse_lazy('notify:notify_detail', kwargs=dict(requesttype=self.requesttype, slug=self.slug))
+        return reverse_lazy('notify:notify_detail', kwargs=dict(request_type=self.request_type, slug=self.slug))

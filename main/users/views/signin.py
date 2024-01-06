@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from django.utils.translation import gettext as _
-from django.shortcuts import render
-from django.contrib.auth import login, logout, authenticate
+
 from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import HttpResponseRedirect, render, redirect
+from django.utils.translation import gettext as _
 
-from main.users.forms import SignInForm
 from main.core.utils import display_form_validations
+from main.users.forms import SignInForm
 
 
-def signin_view(request):
+def login_view(request):
     form = SignInForm()
     if request.POST:
         form = SignInForm(request.POST)
@@ -38,6 +38,6 @@ def signin_view(request):
     return render(request, "auth/signin.html", dict(form=form))
 
 
-def signout_view(request):
+def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')

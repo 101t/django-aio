@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=False, verbose_name='Is Active')),
                 ('is_verified', models.BooleanField(default=False, verbose_name='Is Verified')),
                 ('is_email', models.BooleanField(default=False, help_text='Email verification is important to keep email address verified', verbose_name='Is Email Verified')),
-                ('img', models.ImageField(blank=True, default='/static/assets/img/user.png', upload_to='users', verbose_name='Avatar')),
+                ('img', models.ImageField(blank=True, null=True, upload_to='users', verbose_name='Avatar')),
                 ('address', models.TextField(blank=True, verbose_name='Address')),
                 ('mobile', models.CharField(blank=True, max_length=15, validators=[django.core.validators.RegexValidator(message='Your phone number should consist of 9-15 digits. Example: 1114442277', regex='(\\d{9,15})$')], verbose_name='Mobile')),
                 ('telephone', models.CharField(blank=True, max_length=15, validators=[django.core.validators.RegexValidator(message='Your phone number should consist of 9-15 digits. Example: 1114442277', regex='(\\d{9,15})$')], verbose_name='Telephone')),

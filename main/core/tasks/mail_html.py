@@ -1,37 +1,35 @@
-# -*- encoding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-from django.utils.translation import gettext_lazy as _
-from django.utils import translation
-from django.template.loader import render_to_string
+from typing import List
+
 from django.conf import settings
+from django.utils import translation
 
-from main.core.mailer import PyMail, PyMailMultiPart
-from main.taskapp.celery import app
-
-"""
-kwargs = {
-    user        : {"username": "joe_user", "email": "joe@gmail.com", "name": "Joe Life"},
-    site_name   : "My Company",
-    logo_url    : "http://www.g.com/logo.png",
-    site_url    : "http://www.g.com",
-    logo        : '<img data-imagetype="External" alt="{}" src="{}{}" height="100">'.format(site_url, site_url, logo_url)
-}
-
-"""
+from config.celery import app
+from main.core.mailer import PyMailMultiPart
 
 
-@app.task
-def mail_html_maillist(maillist, subject, html_template, kwargs={}, lang=settings.LANGUAGE_CODE, ):
+@app.task(bind=True, default_retry_delay=3, max_retries=3)
+def mail_html_mails(
+        self, mails: List[str], subject: str, html_template: str, kwargs: dict, lang: str = settings.LANGUAGE_CODE):
+    """
+    kwargs = {
+        user      : {"username": "joe_user", "email": "joe@gmail.com", "name": "Joe Life"},
+        site_name : "Company Name",
+        logo_url  : "http://www.example.com/logo.png",
+        site_url  : "http://www.example.com",
+        logo      : f'<img data-imagetype="External" alt="{logo_url}" src="{logo_url}" height="100">'
+    }
+    """
     translation.activate(lang)
     mail = PyMailMultiPart(subject=subject, html_template=html_template, )
-    mail.send(maillist=maillist, kwargs=kwargs)
+    mail.send(mails=mails, kwargs=kwargs)
 
 
-@app.task
-def mail_html_envelopes(envelopes, subject, html_template, lang=settings.LANGUAGE_CODE, ):
-    '''
-    e.g envelopes = {"name": "Joe Life", "email": "info@domain.com", "kwargs": "Dictionary of extra"}
-    '''
+@app.task(bind=True, default_retry_delay=3, max_retries=3)
+def mail_html_envelopes(
+        self, envelopes: List[str], subject: str, html_template: str, lang: str = settings.LANGUAGE_CODE):
+    """
+    e.g. envelopes = {"name": "Joe Life", "email": "info@domain.com", "kwargs": "Dictionary of extra"}
+    """
     translation.activate(lang)
     mail = PyMailMultiPart(subject=subject, html_template=html_template, )
     mail.send_envelopes(envelopes=envelopes)
