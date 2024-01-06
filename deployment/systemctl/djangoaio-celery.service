@@ -11,7 +11,7 @@ User=username
 Group=username
 Environment="DJANGO_SETTINGS_MODULE=config.settings.pro"
 WorkingDirectory=/home/username/projects/django-aio
-ExecStart=/home/username/projects/django-aio/env/bin/celery worker -A main.taskapp -l info #--autoscale=10,3
+ExecStart=/home/username/projects/django-aio/env/bin/celery worker -A config -l info #--autoscale=10,3
 StandardOutput=file:/home/username/projects/django-aio/logs/worker.log
 StandardError=file:/home/username/projects/django-aio/logs/worker.log
 StandardOutput=journal+console

@@ -18,19 +18,20 @@ All in one pre-configured and prepared as django project, your project will be r
 3. Channels
 4. Postgres
 5. Redis
-6. DRF (Django REST Framework)
+6. DRF (Django REST Framework, Swagger, JWT)
 
-Also has some features customization:
+Also has some features' customization:
 
 1. Custom User
 2. Custom sending Mail
 3. Sending Notification via channels
-4. loggin everything in the system
+4. login everything in the system
 5. custom sample data loader `python manage.py load_new` and migrations reseter `python manage.py reseter`
 6. custom utils functions
 7. easy to deployments
 8. easy to translate
-9. seperating `config/` for configurations and `main/` for all `apps`, `static`, `templates`
+9. separating `config/` for configurations and `main/` for all `apps`, `static`, `templates`
+10. Pre-configured API using JWT authentication and swagger-ui
 
 
 ## Getting Started
@@ -50,9 +51,9 @@ source env/bin/activate
 
 pip install -r requirements.txt
 
-cp -rf Sample.env .env
+cp sample.env .env
 
-./load_data.sh --init
+python manage.py runserver
 ```
 
 In Command Prompt for **Windows**
@@ -70,15 +71,15 @@ env/Scripts/activate
 
 pip install -r requirements.txt
 
-copy Sample.env .env
+copy sample.env .env
 
-load_data_win.bat --init
+python manage.py runserver
 ```
 
 Or using as new project templates
 
 ```sh
-django-admin.py startproject --template=https://github.com/101t/django-aio/archive/latest.zip --extension=py,gitignore PROJECT_NAME
+django-admin.py startproject --template=https://github.com/101t/django-aio/archive/latest.zip --extension=py,gitignore YOUR_PROJECT_NAME
 ```
 
 > Note: the `admin` user automatically added to project as default administrator user, the credentials authentication is **Username: `admin`, Password: `secret`**.
@@ -107,33 +108,16 @@ msgunfmt [django.mo] > [django.po]
 
 To run your celery in development
 ```sh
-celery worker -A main.taskapp -l debug
-```
-
-### Run Channels
-To run channels in development as `ASGI` using `daphne`
-```sh
-daphne config.asgi:application -b 0.0.0.0 -p 9000
+make run_celery
 ```
 
 ### Run Django
 To run django in development as `HTTP` 
 ```sh
-python manage.py runserver 0.0.0.0:8000
+make run
 ```
-
-### Upgrading Packages
-
-Here the following examples how to upgrade some packages
-
-```sh
-pip install -U django
-pip install -U channels
-pip install -U celery
-pip install -U djangorestframework markdown django-filter
-```
-> Note: be careful about sub-packages compatibility and dependencies conflict while **upgrading**
 
 ## Conclusion
 
-The `django-aio` [Django All-in-One] repository is the result of team collaboration with developing a big web application. It's designed to make quick-starting for the pre-defined installed packages with all nice features to make sure the implementation initialized, these efforts represent predefined goals and base templates for django frameworks and its beautiful 3rd-party packages.
+The `django-aio` [Django All-in-One] repository is the result of years of development to starts from the middle of project-life. 
+The repository represent predefined goals and base templates for django frameworks and its beautiful 3rd-party packages.

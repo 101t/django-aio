@@ -1,14 +1,15 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from django.utils.translation import gettext_lazy as _
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.decorators import login_required
-
-from main.notify.models import Notification, NotificationRequest
-from main.core.utils import get_query, paginate
 
 import json
+
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.utils.translation import gettext_lazy as _
+
+from main.core.utils import get_query, paginate
+from main.notify.models import Notification, NotificationRequest
 
 PER_PAGE = 25
 
@@ -26,8 +27,8 @@ def notify_list(request):
 
 
 @login_required
-def notify_detail(request, requesttype="", slug=""):
-    obj = get_object_or_404(NotificationRequest, slug=slug, requesttype=requesttype)
+def notify_detail(request, request_type="", slug=""):
+    obj = get_object_or_404(NotificationRequest, slug=slug, request_type=request_type)
     template_name = 'web/notify-detail.html'
     return render(request, template_name, dict(obj=obj))
 

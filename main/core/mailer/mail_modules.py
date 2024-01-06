@@ -16,10 +16,10 @@ from email.mime.text import MIMEText
 
 
 class PyMail(object):
-    def __init__(self, subject, from_mail, maillist, message):
+    def __init__(self, subject, from_mail, mails, message):
         self.subject = str(subject)
         self.from_mail = from_mail
-        self.maillist = maillist
+        self.mails = mails
         self.message = str(message)
         self.emailserver = EmailServer.objects.filter(active=True).first()
 
@@ -38,7 +38,7 @@ class PyMail(object):
                 mailserver.starttls()
             # mailserver.login(django_settings.EMAIL_HOST_USER, django_settings.EMAIL_HOST_PASSWORD)
             mailserver.login(self.emailserver.username, self.emailserver.password)
-            for mail in self.maillist:
+            for mail in self.mails:
                 message = """\
 From: %s
 To: %s
@@ -62,7 +62,7 @@ class PyMailMultiPart(object):
     def named(self, mail, name=""):
         return "{0} <{1}>".format(name, mail) if name else mail
 
-    def send(self, maillist=[], kwargs={}):
+    def send(self, mails=[], kwargs={}):
         mailobject = None
         if self.emailserver:
             msg = MIMEMultipart('related', type="text/html")
@@ -77,7 +77,7 @@ class PyMailMultiPart(object):
                 mailobject = smtplib.SMTP(self.emailserver.server, self.emailserver.port)
                 mailobject.starttls()
             mailobject.login(self.emailserver.username, self.emailserver.password)
-            for to_mail in maillist:
+            for to_mail in mails:
                 msg["To"] = to_mail
                 mailobject.sendmail(self.from_mail, to_mail, msg.as_string())
             mailobject.quit()

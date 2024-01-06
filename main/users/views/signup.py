@@ -1,10 +1,10 @@
-from django.utils.translation import ugettext as _
-from django.shortcuts import render
 from django.contrib import messages
+from django.shortcuts import render
+from django.utils.translation import gettext as _
 
 from main.core.utils import display_form_validations
-from main.users.models import User
 from main.users.forms import SignUpForm
+from main.users.models import User
 
 
 def create_an_account(request):

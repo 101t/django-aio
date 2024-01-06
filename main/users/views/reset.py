@@ -1,14 +1,14 @@
-from django.utils.translation import gettext as _
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib import messages
 from django.conf import settings
-from django.views.generic import FormView
-from django.urls import reverse, reverse_lazy
+from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.tokens import default_token_generator
+from django.urls import reverse, reverse_lazy
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.translation import gettext as _
+from django.views.generic import FormView
 
-from main.core.tasks import mail_html_maillist
+from main.core.tasks import mail_html_mails
 from main.core.utils import display_form_validations
 from main.users.forms import PasswordResetRequestForm, SetPasswordForm
 
@@ -37,7 +37,7 @@ class ResetPasswordRequestView(FormView):
                 )
                 subject = _("%(SITE_NAME)s Reset Password") % dict(SITE_NAME=settings.SITE_NAME)
                 template = "email/reset_password_request.html"
-                mail_html_maillist([user.email], subject=subject, html_template=template, kwargs=email_kwargs,
+                mail_html_mails([user.email], subject=subject, html_template=template, kwargs=email_kwargs,
                                    lang=settings.LANGUAGE_CODE)
                 messages.success(request, _("An email has been sent to %(email)s. Please check the inbox to continue "
                                             "resetting password") % dict(email=user.email))
@@ -50,7 +50,7 @@ class ResetPasswordRequestView(FormView):
 
 class ResetPasswordConfirmView(FormView):
     template_name = 'auth/reset.html'
-    success_url = reverse_lazy('web:signin_view')
+    success_url = reverse_lazy('web:login_view')
     form_class = SetPasswordForm
 
     def post(self, request, uidb64=None, token=None, *args, **kwargs):
@@ -74,7 +74,7 @@ class ResetPasswordConfirmView(FormView):
                 )
                 subject = _("%(SITE_NAME)s - Your Password has Changed") % dict(SITE_NAME=settings.SITE_NAME)
                 template = "email/reset_password_information.html"
-                mail_html_maillist([user.email], subject=subject, html_template=template, kwargs=email_kwargs,
+                mail_html_mails([user.email], subject=subject, html_template=template, kwargs=email_kwargs,
                                    lang=settings.LANGUAGE_CODE)
                 # TODO: Send email & notification information about password changes
                 messages.success(request, _("Password has been reset successfully"))

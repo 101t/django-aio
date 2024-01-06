@@ -1,14 +1,11 @@
 # -*- encoding: utf-8 -*-
-from __future__ import unicode_literals
-from django.utils.translation import gettext_lazy as _
-from django.conf.urls import url
-from django.urls import path, re_path
+from django.urls import path
 
-from .views import *
+from main.web import views
 
 app_name = 'web'
 
 urlpatterns = [
-    path('manage/', global_manage, name='global_manage'),
-    path('', welcome_view, name='welcome_view'),
+    path('manage/', views.global_manage, name='global_manage'),
+    path('', views.welcome_view, name='welcome_view'),
 ]

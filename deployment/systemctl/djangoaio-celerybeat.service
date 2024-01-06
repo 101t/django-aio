@@ -11,7 +11,7 @@ User=username
 Group=username
 Environment="DJANGO_SETTINGS_MODULE=config.settings.pro"
 WorkingDirectory=/home/username/projects/django-aio
-ExecStart=/home/username/projects/django-aio/env/bin/celery beat -A main.taskapp -l info
+ExecStart=/home/username/projects/django-aio/env/bin/celery beat -A config -l info
 StandardOutput=file:/home/username/projects/django-aio/logs/beat.log
 StandardError=file:/home/username/projects/django-aio/logs/beat.log
 StandardOutput=journal+console

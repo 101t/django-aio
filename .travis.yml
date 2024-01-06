@@ -17,5 +17,5 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - cp -rf Sample.env .env
+  - cp -rf sample.env .env
   - python manage.py reseter && python manage.py makemigrations && python manage.py migrate && python manage.py load_new
