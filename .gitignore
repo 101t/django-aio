@@ -1,0 +1,94 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+env/
+venv/
+.venv/
+ENV/
+
+# uv cache (lock file should be committed)
+.uv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Testing
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Linting
+.ruff_cache/
+.mypy_cache/
+
+# Logs
+*.log
+logs/
+pip-log.txt
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Static and Media files (generated)
+public/
+staticfiles/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Node (if used)
+node_modules/
+
+# Cache
+cache/
+.cache/
+.sass-cache/
+
+# Misc
+.vagrant/
+flower

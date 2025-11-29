@@ -1,0 +1,29 @@
+[Unit]
+Description=DjangoAIO Gunicorn ASGI Server
+Requires=postgresql.service redis.service
+After=network.target postgresql.service redis.service
+
+[Service]
+Type=notify
+User=djangoaio
+Group=djangoaio
+WorkingDirectory=/opt/djangoaio
+Environment="DJANGO_SETTINGS_MODULE=config.settings.pro"
+Environment="PATH=/opt/djangoaio/.venv/bin:/usr/bin"
+ExecStart=/opt/djangoaio/.venv/bin/gunicorn config.asgi:application \
+    --bind 0.0.0.0:8000 \
+    --workers 4 \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --timeout 120 \
+    --graceful-timeout 30 \
+    --keep-alive 5 \
+    --log-level info \
+    --access-logfile - \
+    --error-logfile -
+Restart=on-failure
+RestartSec=5s
+KillMode=mixed
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

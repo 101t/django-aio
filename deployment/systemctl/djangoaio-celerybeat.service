@@ -1,0 +1,19 @@
+[Unit]
+Description=DjangoAIO Celery Beat Scheduler
+Requires=redis.service
+After=network.target redis.service
+
+[Service]
+Type=simple
+User=djangoaio
+Group=djangoaio
+WorkingDirectory=/opt/djangoaio
+Environment="DJANGO_SETTINGS_MODULE=config.settings.pro"
+Environment="PATH=/opt/djangoaio/.venv/bin:/usr/bin"
+ExecStart=/opt/djangoaio/.venv/bin/celery -A config beat \
+    --loglevel=info
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+[Unit]
+Description=DjangoAIO Daphne ASGI Server
+Requires=postgresql.service redis.service
+After=network.target postgresql.service redis.service
+
+[Service]
+Type=simple
+User=djangoaio
+Group=djangoaio
+WorkingDirectory=/opt/djangoaio
+Environment="DJANGO_SETTINGS_MODULE=config.settings.pro"
+Environment="PATH=/opt/djangoaio/.venv/bin:/usr/bin"
+ExecStart=/opt/djangoaio/.venv/bin/daphne config.asgi:application \
+    -b 0.0.0.0 \
+    -p 8000 \
+    --verbosity 1
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,84 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: djangoaio:latest
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.pro
+      REDIS_HOST: redis
+    volumes:
+      - static_volume:/app/public/static
+      - media_volume:/app/public/media
+      - logs_volume:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health_check"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: djangoaio:latest
+    entrypoint: ["bash", "./entrypoint-celery.sh"]
+    env_file:
+      - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.pro
+      REDIS_HOST: redis
+      CELERY_LOG_LEVEL: info
+    volumes:
+      - logs_volume:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-djangoaio}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-djangoaio}
+      POSTGRES_DB: ${POSTGRES_DB:-djangoaio}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-djangoaio}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --save 60 1
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_volume:
+  media_volume:
+  logs_volume:
